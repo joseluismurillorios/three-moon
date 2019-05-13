@@ -134,7 +134,7 @@
 				// //cubemap
 				var format = '.jpg';
 
-				var path = "textures/cube/stars/face-";
+				var path = "https://cdn.jsdelivr.net/gh/joseluismurillorios/three-moon/textures/cube/stars/face-";
 				var urls = [
 					path + 'r' + format, path + 'l' + format,
 					path + 't' + format, path + 'd' + format,
@@ -148,8 +148,8 @@
 				//
 				textureLoader = new THREE.TextureLoader();
 
-				var bumpMap = textureLoader.load( "textures/moon/bump.jpg" );
-				var texture = textureLoader.load( "textures/moon/diffuse.jpg" );
+				var bumpMap = textureLoader.load( "https://cdn.jsdelivr.net/gh/joseluismurillorios/three-moon/textures/moon/bump.jpg" );
+				var texture = textureLoader.load( "https://cdn.jsdelivr.net/gh/joseluismurillorios/three-moon/textures/moon/diffuse.jpg" );
 
 				var material = new THREE.MeshPhongMaterial( {
 					color: 0xffffff,
@@ -163,12 +163,12 @@
 				// var geoSphere = new THREE.SphereGeometry( 2, 32, 32 );
 
 				loader = new THREE.GLTFLoader();
-				loader.load( "models/moon.glb", function ( gltf ) {
+				loader.load( "https://cdn.jsdelivr.net/gh/joseluismurillorios/three-moon/models/moon.glb", function ( gltf ) {
 					console.log(gltf);
 					createScene( gltf.scene.children[ 0 ].geometry, 120, material );
 				} );
 
-				var spriteMap = new THREE.TextureLoader().load( "textures/ec.png" );
+				var spriteMap = new THREE.TextureLoader().load( "https://cdn.jsdelivr.net/gh/joseluismurillorios/three-moon/textures/ec.png" );
 				var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
 				var sprite = new THREE.Sprite( spriteMaterial );
 				var scl = Math.max(window.innerWidth, window.innerHeight);
@@ -202,29 +202,15 @@
 			}
 
 			function createScene( geometry, scale, material ) {
-				var alphaMap = textureLoader.load( "textures/moon/clouds.jpg" );
-
-				var cloudMaterial = new THREE.MeshPhongMaterial({
-					specular: 0x000000,
-					emissive: 0x010101,
-					opacity: 0.4,
-					alphaMap: alphaMap,
-					bumpMap: alphaMap,
-					bumpScale: 1,
-    			transparent: true
-				});
 				mesh = new THREE.Mesh( geometry, material );
-				clouds = new THREE.Mesh( geometry, cloudMaterial );
 				mesh.rotation.y -= 20;
 
 				mesh.scale.set( scale, scale, scale );
-				clouds.scale.set( scale + 1, scale + 1, scale + 1 );
 
 				mesh.castShadow = true;
 				mesh.receiveShadow = true;
 
 				scene.add( mesh );
-				scene.add( clouds );
 
 			}
 
@@ -303,7 +289,6 @@
 
 				if ( mesh ) {
 					mesh.rotation.y += 0.0011;
-					clouds.rotation.y += 0.0013;
 					// mesh.rotation.x += 0.001;
 				}
 				cameraY += 0.0001;

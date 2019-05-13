@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - materials - bump map [Lee Perry-Smith]</title>
+		<title>M O O N | J M</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
 		<style>
 			body {
 				background:#000;
@@ -18,13 +19,17 @@
 
 			#info {
 				position: absolute;
-				top: 0px; width: 100%;
+				bottom: 15px;
+				width: 100%;
 				color: #ffffff;
-				padding: 5px;
-				font-family:Monospace;
-				font-size:13px;
-				text-align:center;
-				z-index:1000;
+				padding: 0;
+				font-size: 32px;
+				z-index: 1000;
+				letter-spacing: 30px;
+				font-weight: 100;
+				text-align: right;
+				font-family: "Montserrat", sans-serif;
+				opacity: 0.5;
 			}
 
 			#webglmessage {
@@ -116,7 +121,7 @@
 				//cubemap
 				var format = '.jpg';
 
-				var path = "textures/cube/stars/face-";
+				var path = "https://cdn.jsdelivr.net/gh/joseluismurillorios/three-moon/textures/cube/stars/face-";
 				var urls = [
 					path + 'r' + format, path + 'l' + format,
 					path + 't' + format, path + 'd' + format,
@@ -130,8 +135,8 @@
 				//
 				textureLoader = new THREE.TextureLoader();
 
-				var bumpMap = textureLoader.load( "textures/moon/bump.jpg" );
-				var texture = textureLoader.load( "textures/moon/diffuse.jpg" );
+				var bumpMap = textureLoader.load( "https://cdn.jsdelivr.net/gh/joseluismurillorios/three-moon/textures/moon/bump.jpg" );
+				var texture = textureLoader.load( "https://cdn.jsdelivr.net/gh/joseluismurillorios/three-moon/textures/moon/diffuse.jpg" );
 
 				var material = new THREE.MeshPhongMaterial( {
 					color: 0xFFFFFF,
@@ -150,7 +155,7 @@
 				} );
 
 				loader = new THREE.GLTFLoader();
-				loader.load( "models/moon.glb", function ( gltf ) {
+				loader.load( "https://cdn.jsdelivr.net/gh/joseluismurillorios/three-moon/models/moon.glb", function ( gltf ) {
 					console.log(gltf);
 					createScene( gltf.scene.children[ 0 ].geometry, 120, material );
 					// createScene( geometry, 100, material );
@@ -229,8 +234,8 @@
 					mesh.rotation.y += 0.0011;
 				}
 
-				camera.position.x += ( mouseX - camera.position.x );
-				camera.position.y += ( mouseY - camera.position.y );
+				camera.position.x += ( mouseX - camera.position.x * 0.5 );
+				camera.position.y += ( mouseY - camera.position.y * 0.5 );
 				camera.lookAt( scene.position );
 
 				renderer.render( scene, camera );
